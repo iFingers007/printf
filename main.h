@@ -10,5 +10,6 @@
 int _printf(const char *format, ...);
 int _putchar(char c);
 int _puts(const char *s);
+void print_uns(unsigned int num, int *n);
 
 #endif

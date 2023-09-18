@@ -82,6 +82,8 @@ void formatted(char s, va_list list, int *n)
 		*n += _putchar('%');
 	else if (s == 'b')
 		print_bin(va_arg(list, unsigned int), n);
+	else if (s == 'u')
+		print_uns(va_arg(list, unsigned int), n);
 	else
 		write(2, "Error", 6);
 
@@ -108,14 +110,19 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
+			i++;
 			printed++;
+			continue;
 		}
 		else
 		{
 			i++;
 			formatted(format[i], list, &printed);
+			i++;
+			continue;
 		}
 		i++;
+		continue;
 	}
 
 	return (printed);
