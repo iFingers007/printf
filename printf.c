@@ -41,7 +41,7 @@ void print_str(char *s, int *n)
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		_putchar(s[i]);
-		n++;
+		(*n)++;
 	}
 }
 
@@ -84,6 +84,8 @@ void formatted(char s, va_list list, int *n)
 		print_bin(va_arg(list, unsigned int), n);
 	else if (s == 'u')
 		print_uns(va_arg(list, unsigned int), n);
+	else if (s == 'o')
+		print_oct(va_arg(list, unsigned int), n);
 	else
 		write(2, "Error", 6);
 
@@ -105,7 +107,7 @@ int _printf(const char *format, ...)
 		return (0);
 	va_start(list, format);
 	i = 0;
-	while (format[i] != '\0')
+	while (format[i])
 	{
 		if (format[i] != '%')
 		{
@@ -124,6 +126,7 @@ int _printf(const char *format, ...)
 		i++;
 		continue;
 	}
+	va_end(list);
 
 	return (printed);
 }

@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "main.h"
 
 /**
@@ -26,5 +25,22 @@ void print_uns(unsigned int num, int *n)
 		return;
 	print_uns((num / 10), n);
 	_putchar('0' + (num % 10));
+	(*n)++;
+}
+
+/**
+ * print_bin - Handles Binary printing
+ *@list_num: Number to be converted
+ *@n: Number of characters
+ *
+ *Return: Void
+ */
+
+void print_oct(unsigned int list_num, int *n)
+{
+	if (list_num == 0)
+		return;
+	print_oct((list_num / 8), n);
+	_putchar('0' + (list_num % 8));
 	(*n)++;
 }
