@@ -10,13 +10,18 @@
 
 void print_int(int list_num, int *n)
 {
+	if (n == NULL)
+		return;
 	if (list_num < 0)
 	{
 		_putchar('-');
 		list_num = -list_num;
 	}
 	if (list_num == 0)
+	{
+		(*n)++;
 		return;
+	}
 	print_int((list_num / 10), n);
 	_putchar('0' + (list_num % 10));
 	(*n)++;
@@ -87,7 +92,12 @@ void formatted(char s, va_list list, int *n)
 	else if (s == 'o')
 		print_oct(va_arg(list, unsigned int), n);
 	else
-		write(2, "Error", 6);
+	{
+		_putchar('%');
+		(*n)++;
+		_putchar(s);
+		(*n)++;
+	}
 
 }
 
@@ -119,9 +129,16 @@ int _printf(const char *format, ...)
 		else
 		{
 			i++;
-			formatted(format[i], list, &printed);
-			i++;
-			continue;
+			if (format[i] == '\0')
+			{
+				return (-1);
+			}
+			else
+			{
+				formatted(format[i], list, &printed);
+				i++;
+				continue;
+			}
 		}
 		i++;
 		continue;

@@ -9,7 +9,7 @@
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+  return (write(1, &c, 1));
 }
 
 /**
@@ -29,7 +29,7 @@ void print_uns(unsigned int num, int *n)
 }
 
 /**
- * print_oct - Handles Octal printing
+ * print_bin - Handles Binary printing
  *@list_num: Number to be converted
  *@n: Number of characters
  *
