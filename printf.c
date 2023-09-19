@@ -118,7 +118,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 	{
-		write(1, "(null)", 7);
+		write(2, "(null)", 7);
 		return (-1);
 	}
 
