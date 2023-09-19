@@ -1,5 +1,4 @@
 #include "main.h"
-#include <limits.h>
 
 /**
  * print_int - Handles Integer printing
@@ -8,11 +7,16 @@
  *
  *Return: Void
  */
-
 void print_int(int list_num, int *n)
 {
 	if (list_num == 0)
 		return;
+		if (list_num < 0)
+	{
+		_putchar('-');
+		(*n)++;
+		list_num = -list_num;
+	}
 	if (list_num == INT_MIN)
 	{
 		print_int((INT_MAX / 10), n);
@@ -20,17 +24,10 @@ void print_int(int list_num, int *n)
 		(*n)++;
 		return;
 	}
-	if (list_num < 0)
-	{
-		_putchar('-');
-		(*n)++;
-		list_num = -list_num;
-	}
 	print_int((list_num / 10), n);
 	_putchar('0' + (list_num % 10));
 	(*n)++;
 }
-
 
 /**
  * print_str - Handles string printing
@@ -85,9 +82,9 @@ void formatted(char s, va_list list, int *n)
 	if (s == 'c')
 		*n += _putchar(va_arg(list, int));
 	else if (s == 's')
-		_printf(va_arg(list, char *));
+		print_str(va_arg(list, char *), n);
 	else if (s == 'd' || s == 'i')
-		print_int(va_arg(list, int ), n);
+		print_int(va_arg(list, int), n);
 	else if (s == '%')
 		*n += _putchar('%');
 	else if (s == 'b')
@@ -135,15 +132,10 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '\0')
-			{
 				return (-1);
-			}
-			else
-			{
-				formatted(format[i], list, &printed);
-				i++;
-				continue;
-			}
+			formatted(format[i], list, &printed);
+			i++;
+			continue;
 		}
 		i++;
 		continue;
