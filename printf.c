@@ -130,15 +130,10 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '\0')
-			{
 				return (-1);
-			}
-			else
-			{
-				formatted(format[i], list, &printed);
-				i++;
-				continue;
-			}
+			formatted(format[i], list, &printed);
+			i++;
+			continue;
 		}
 		i++;
 		continue;
