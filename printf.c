@@ -39,13 +39,14 @@ void print_int(int list_num, int *n)
  */
 void print_str(char *s, int *n)
 {
-	int i = 0;
+	int i;
 
-	if (s == NULL)
+/*	if (s == NULL)
 	{
-		write(2, "Error\n", 6);
+		*n += write(1, "(null)", 6)
 		return;
 	}
+*/
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		_putchar(s[i]);
@@ -84,6 +85,12 @@ void formatted(char s, va_list list, int *n)
 		*n += _putchar(va_arg(list, int));
 	else if (s == 's')
 		*n += _printf(va_arg(list, char *));
+/*		str = va_arg(list, char*);
+		if (str == NULL)
+			print_str(("(null)"), n);
+		else
+			*n +=_printf("%s", str);
+*/	
 	else if (s == 'd' || s == 'i')
 		print_int(va_arg(list, int), n);
 	else if (s == '%')
@@ -118,8 +125,8 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 	{
-		write(2, "(null)", 7);
-		return (-1);
+		print_str("(null)", &printed);
+		return (printed);
 	}
 
 	va_start(list, format);
