@@ -83,7 +83,7 @@ void formatted(char s, va_list list, int *n)
 	if (s == 'c')
 		*n += _putchar(va_arg(list, int));
 	else if (s == 's')
-		print_str(va_arg(list, char *), n);
+		*n += _printf(va_arg(list, char *));
 	else if (s == 'd' || s == 'i')
 		print_int(va_arg(list, int), n);
 	else if (s == '%')
