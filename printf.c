@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 
 /**
  * print_int - Handles Integer printing
@@ -11,7 +12,7 @@ void print_int(int list_num, int *n)
 {
 	if (list_num == 0)
 		return;
-		if (list_num < 0)
+	if (list_num < 0)
 	{
 		_putchar('-');
 		(*n)++;
