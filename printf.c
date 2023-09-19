@@ -117,7 +117,11 @@ int _printf(const char *format, ...)
 	va_list list;
 
 	if (format == NULL)
+	{
+		write(1, "(null)", 7);
 		return (-1);
+	}
+
 	va_start(list, format);
 	i = 0;
 	while (format[i])
