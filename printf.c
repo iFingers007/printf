@@ -81,18 +81,23 @@ void print_bin(unsigned int list_num, int *n)
 
 void formatted(char s, va_list list, int *n)
 {
+	int num;
+
 	if (s == 'c')
 		*n += _putchar(va_arg(list, int));
 	else if (s == 's')
-		 print_str(va_arg(list, char *), n);
-/*		str = va_arg(list, char*);
-		if (str == NULL)
-			print_str(("(null)"), n);
-		else
-			*n +=_printf("%s", str);
-*/	
+		print_str(va_arg(list, char *), n);
 	else if (s == 'd' || s == 'i')
-		print_int(va_arg(list, int), n);
+	{
+		num = va_arg(list, int);
+		if (num == 0)
+		{
+			*n += _putchar('0');
+			return;
+		}
+		else
+			print_int(num, n);
+	}
 	else if (s == '%')
 		*n += _putchar('%');
 	else if (s == 'b')
